@@ -5,4 +5,9 @@ Aprende Rust y C programando gráficos por software con efectos de demoscene cl�
 ## Episodios
 
 ### Episodio 01: Efecto de fuego
+<a href="https://youtube.com/live/RpKQKprrzjo"><img align="left" src="https://i9.ytimg.com/vi/RpKQKprrzjo/mqdefault.jpg?v=64d77302&sqp=CMTv3aYG&rs=AOn4CLA2LqH9R13_zu0LzFGIwW3cz8WF8Q" alt="Rust vs C #01: Efecto de Fuego | El reto de la programación gráfica a mano #RUSTvsC01"/></a>
+**Fecha**: Jueves, 17 de agosto de 2023, 20:00h
+
 Programamos un efecto clásico de fuego en Rust y en C. Para los gráficos utilizamos Raylib.
+
+**[>> Vídeo <<](https://youtube.com/live/RpKQKprrzjo)**
