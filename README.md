@@ -12,4 +12,6 @@ Programamos un efecto clásico de fuego en Rust y en C. Para los gráficos utili
 
 **[>> Vídeo <<](https://youtube.com/live/RpKQKprrzjo)**
 
-**[>> Código Rust <<](chapters/01-fire/rust/)**
+Código fuente:
+
+**[ [Rust] ](chapters/01-fire/rust/)** **[ [Rust-clean] ](chapters/01-fire/rust-clean/)**
