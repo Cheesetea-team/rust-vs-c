@@ -25,7 +25,7 @@ type  AppData  = (ScrBuff, Image, Texture2D, Palette, HeatBuff, Wyrand);
 /// 
 fn main() {
     // Initialize GUI and Required data
-    init_gui();
+    init_gui("Fire");
     let ( mut screen_buffer_data
         , _
         , screen_buffer_texture
@@ -125,7 +125,7 @@ fn generate_palette() -> Palette {
     for i in 170..=255 {
         pal[i].r = 255;
         pal[i].g = 255;
-        pal[i].b = ((i-170) * (0xFF / 85)) as u8;
+        pal[i].b = ((i-170) * (0xFF / 86)) as u8;
     }
 
     // Return the palette
@@ -138,8 +138,10 @@ fn generate_palette() -> Palette {
 /// vertical line
 /// 
 fn draw_the_palette(screen: &mut [Color], pal: &[Color]) {
+    const X:usize = 50;
+
     for y in 0..pal.len() {
-        let init = y*WIDTH + 50;    // Coordinates (50,y)
+        let init = y*WIDTH + X;    // Coordinates (x,y)
         let pixels = &mut screen[ init..(init+4) ];
         pixels[0] = pal[y];
         pixels[1] = pal[y];
@@ -189,8 +191,8 @@ fn calculate_next_fire_frame(fire_buf: &mut[u8]) {
     old_fire_buf.clone_from_slice(fire_buf);
 
     // For all pixels in the fire_buffer, top to bottom
-    for y in 0..299 {
-        for x in 1..399 {
+    for y in 0..(HEIGHT-1) {
+        for x in 1..(WIDTH-1) {
             let i = (y*WIDTH + x) as usize;   // i = index from (x,y) coords
 
             // This Pixel = weighted average of surrounding pixels
@@ -198,9 +200,9 @@ fn calculate_next_fire_frame(fire_buf: &mut[u8]) {
                     10 * old_fire_buf[i - 1] as u64
                 +   20 * old_fire_buf[i + 0] as u64
                 +   10 * old_fire_buf[i + 1] as u64
-                +  160 * old_fire_buf[i - 1 + 400] as u64
-                +  320 * old_fire_buf[i + 0 + 400] as u64
-                +  160 * old_fire_buf[i + 1 + 400] as u64
+                +  160 * old_fire_buf[i - 1 + WIDTH] as u64
+                +  320 * old_fire_buf[i + 0 + WIDTH] as u64
+                +  160 * old_fire_buf[i + 1 + WIDTH] as u64
             ) / 680) as u8;
         }
     }
@@ -252,9 +254,9 @@ fn load_texture_from_image(img: Image) -> Texture2D {
     }
 }
 
-fn init_gui() {
+fn init_gui(title: &str) {
     unsafe {
-        InitWindow(400, 300, "Fire".as_ptr() as *const i8);
+        InitWindow(WIDTH as i32, HEIGHT as i32, title.as_ptr() as *const i8);
     }
 }
 
